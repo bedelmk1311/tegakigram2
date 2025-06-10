@@ -1,0 +1,23 @@
+<div class='container px-5 px-sm-0'>
+
+  <div class='row'>
+
+    <div class='col-md-3'>  <!--サイドバー-->
+      <%= render 'layouts/sidebar' %>
+    </div>
+
+    <div class='col-md-9'> <!--メインコンテンツ-->
+      <h2><i class="fa-solid fa-thumbs-up fa-sm" ></i><%= current_user.name %> さんがいいねした投稿</h2>
+        <% if @posts_favorite == [] %>
+          <div class="test-center">
+            いいねした投稿はありません<br>
+            いいねしてみよう!
+          </div>
+        <% else %>
+          全 <%= @posts_favorite.count%> 件
+          <%= render 'public/posts/index', posts: @posts_favorite %>
+        <% end %>
+    </div>
+
+  </div>
+</div>

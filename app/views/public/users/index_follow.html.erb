@@ -1,0 +1,25 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+
+    <div class='col-md-3'>  <!--サイドバー-->
+      <%= render 'layouts/sidebar' %>
+    </div>
+
+    <div class='col-md-9'> <!--メインコンテンツ-->
+      <h2>
+        <i class="fa-solid fa-user-check fa-sm" ></i><%= current_user.name %> さんがフォロー中のユーザーの投稿
+      </h2>
+        <% if @posts_follow == [] %>
+          <div class="">
+            <%= image_tag "kogarashi.jpg", alt: "Logo", width: 500 %><br>
+            まだ誰もフォローしてないようです<br>
+            フォローしてみよう!
+          </div>
+        <% else %>
+          全 <%= @posts_follow.count%> 件
+          <%= render 'public/posts/index', posts: @posts_follow %>
+        <% end %>
+    </div>
+
+  </div>
+</div>

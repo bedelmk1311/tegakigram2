@@ -1,0 +1,7 @@
+<!--form_with(モデル[親,子])の書き方-->
+<div class="col-8 mx-auto">
+  <%= form_with model:[post, comment] do |f| %>
+    <%= f.text_area :message,placeholder: "コメントを書いてみよう!", class: "form-control " %>
+    <%= f.submit "追加", class: "btn btn-sm btn-outline-danger mt-1" %>
+  <% end %>
+</div>

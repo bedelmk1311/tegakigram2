@@ -1,0 +1,65 @@
+<header class="bg-main-color d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 ">
+  <div class="container py-3 border-bottom">
+    <div class ="row">
+
+      <div class="col">
+        <%= render 'public/searches/form' %><!--検索-->
+      </div>
+
+      <div class ="col text-center"> 
+        <%= link_to root_path do %>
+          <%= image_tag "logo.jpg", alt: "Logo", width: 50 %>
+        <% end %>
+        <%= render 'layouts/greeting' %><!--こんにちは-->
+      </div>
+
+      <div class ="col ">
+        <ul class="nav justify-content-center">
+
+          <% if user_signed_in? %> <!--サインイン時-->
+            <li class="nav-item">
+              <%= link_to user_path(current_user),class: 'nav-link text-dark' do %>
+                プロフィール<i class="fa-solid fa-user fa-xl" style="color: #2F5E63;"></i>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete ,class: 'nav-link text-dark' do %>
+                ログアウト<i class="fas fa-sign-out-alt fa-xl" style="color: #2F5E63;"></i>
+              <% end %>
+            </li>
+          <% elsif admin_signed_in? %> <!--Admin時-->
+            <li class="nav-item">
+              <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
+                ログアウト<i class="fas fa-sign-out-alt fa-xl" style="color: #2F5E63;"></i>
+              <% end %>
+            </li>
+
+          <% else %> <!--Nobody-->
+            <li class="nav-item">
+              <%= link_to new_user_registration_path, class: 'nav-link text-dark' do %>
+                新規登録<i class="fas fa-user-plus fa-xl" style="color: #2F5E63;"></i>
+              <% end %>
+            </li>
+
+            <li class="nav-item">
+              <%= link_to new_user_session_path,class: 'nav-link text-dark' do %>
+                ログイン<i class="fas fa-sign-in-alt fa-xl" style="color: #2F5E63;"></i>
+              <% end %>
+            </li>
+            <%
+=begin%>
+ <li class="nav-item">
+              <%= link_to new_admin_session_path,class: 'nav-link text-dark' do %>
+                開発用!管理者ログイン<i class="fas fa-sign-in-alt fa-xl" style="color: #2F5E63;"></i>
+              <% end %>
+            </li> 
+<%
+=end%>
+          <% end %>
+        </ul>
+      </div>
+  </div>
+
+</div>
+
+</header>

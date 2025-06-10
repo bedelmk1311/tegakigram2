@@ -1,0 +1,45 @@
+<!--users/index_follow-->
+<!--users/index_favorite-->
+<!--posts/index-->
+
+<div class="card-group-container d-flex flex-wrap justify-content-center"><!--rem単位 html(親)相対値-->
+  <% posts.each do |post| %>
+
+    <div class="card m-2">
+      <div class="card-body shadow ">
+
+        <div class="card-img-top " style=" width: fit-content;"><!--要素にサイズを合わせる-->
+          <%= link_to(post_path(post.id)) do %>
+            <%= image_tag post.get_image, size: '300x300',class:"rounded" %> <!--投稿写真-->
+          <% end %>
+        </div>
+
+        <div class="card-title m-3">
+          <div class="row justify-content-between" ><!--両端から均等に並べる-->
+
+            <div class=""><!--ユーザーアイコンと名前-->
+              <%= link_to(post.user) do %>
+                <%= image_tag post.user.get_profile_image, size:'30x30',class:"rounded-circle" %>
+              <% end %>
+              <%= post.user.name%>
+            </div>
+
+            <div class=""><!--コメントといいね-->
+              <%= link_to post_path(post.id) do %>
+                <i class="fa-solid fa-comment-dots " style="color: #B197FC;"> <%= post.comments.count %></i>
+              <% end %>
+                <%= render "public/favorites/btn", post: post %>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-text text-truncate" style="max-width: 18rem;"><!--本文省略 約18文字-->
+          <%= post.body %><br>
+        </div>
+
+      </div>
+    </div>
+
+  <% end %>
+</div>
+

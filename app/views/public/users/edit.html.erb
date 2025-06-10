@@ -1,0 +1,25 @@
+<!--バリデーションエラーメッセ-->
+<%= render 'layouts/error', obj: @user %>
+
+<div class='container'>
+  <div class='row'>
+
+    <div class='col-md-3'><!--サイドバー-->
+      <%= render 'layouts/sidebar' %>
+    </div>
+
+    <div class="col-md-9 mx-auto"><!--メインコンテンツ-->
+    <h2 class="font-weight-bold">
+      <i class="fa-solid fa-gear fa-sm" ></i>プロフィール編集
+    </h2>
+
+    <%= form_with model:@user, local:true do |f| %>
+      <%= f.text_field :name, placeholder: "名前",class: "form-control m-3" %>
+      <%= f.file_field :profile_image, class: "form-control-file m-3", accept: 'image/*' %>
+      <%= f.text_area :introduction, placeholder: "自分について説明してみよう!", class: "form-control m-3" %>
+      <%= f.submit "変更を保存", class: 'btn btn-sm btn-outline-success m-3' %>
+      <%= link_to '戻る', user_path(current_user) ,class: "btn btn-sm btn-outline-secondary" %>
+      <p>アカウント削除は <%= link_to 'こちら', user_confirm_path(@user) %> から</p>
+    <% end %>
+  </div>
+</div>

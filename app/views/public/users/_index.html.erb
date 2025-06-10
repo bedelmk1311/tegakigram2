@@ -1,0 +1,31 @@
+<!--admin/users/index-->
+<!--public/relationships/followings-->
+<!--public/relationships/followers-->
+
+<table class='table table-hover table-inverse'>
+  <% users.each do |user| %>
+    <tr>
+      <td> <!--プロフ画像と名前ー-->
+        <%= link_to(user) do %>
+          <%= image_tag user.get_profile_image, size: '50x50', class:"rounded-circle" %><br>
+        <% end %>
+        <%= user.name %>
+      </td>
+      <td><!--自己紹介と登録日-->
+        <i class="fa-solid fa-calendar-days " style="color: #2F5E63;"></i>
+        <%= user.created_at.strftime('%Y年%m月%d日') %><br>
+        <%= user.introduction %>
+      </td>
+      <td>
+        <%= render 'public/relationships/link', user: user %><!--フォロー情報リンク-->
+      </td>
+      <td>
+        <% unless current_user.nil? %><!--adminログイン時は表示させない-->
+          <% unless current_user.email == ENV['ADMIN_EMAIL'] %>
+            <%= render 'public/relationships/btn', user: user %><!--フォローボタン-->
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

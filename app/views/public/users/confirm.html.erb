@@ -1,0 +1,16 @@
+<div class="container bg-light">
+  <div class="text-center">
+    <%= render 'layouts/logo' %>
+  </div>
+
+  <div class="text-center">
+    <h3 class="font-weight-bold">アカウント削除しますか？</h3>
+      <p>
+        登録情報や過去の投稿も削除され、<br>
+        新規投稿は行えなくなります。<br>
+        続ける場合は「削除する」をクリックしてください。
+      </p>
+      <%= link_to "削除する", user_path(current_user.id), method: :delete, class: "btn btn-outline-danger mb-3" %><br>
+      <%= link_to "ホームに戻る", posts_path, class: "btn btn-sm btn-outline-primary mb-3" %>
+  </div>
+</div>

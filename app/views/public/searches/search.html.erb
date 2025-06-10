@@ -1,0 +1,36 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'><!--サイドバー-->
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class='col-md-9 '><!--メインコンテンツ-->
+
+    <% if @range == 'User' %> <!--ユーザー検索-->
+      <h3 class="font-weight-bold">
+        <i class="fa-solid fa-user fa-sm" ></i>ユーザー検索
+      </h3>
+      <h4><strong><%= @word %></strong> の単語を含む検索結果</h4>
+
+      <% if @users == [] %>
+        <p>存在しませんでした</p>
+      <% else %>
+        ヒット数: <%= @users.count%> 件
+        <%= render 'public/users/index', users: @users %>
+      <% end %>
+
+    <% else @range == 'Post' %> <!--投稿検索-->
+      <h3 class="font-weight-bold">
+        <i class="fa-solid fa-image"></i>投稿検索
+      </h3>
+      <h4><strong><%= @word %></strong> の単語を含む検索結果</h4>
+
+      <% if @posts == [] %>
+        <p>存在しませんでした</p>
+      <% else %>
+        ヒット数: <%= @posts.count%> 件
+        <%= render 'public/posts/index', posts: @posts %>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
